@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helper\FindCompany.cs" />
     <Compile Include="Helper\FindOrgLegForm.cs" />
     <Compile Include="Helper\FindOrgRegistration.cs" />
     <Compile Include="Helper\FindPerson.cs" />

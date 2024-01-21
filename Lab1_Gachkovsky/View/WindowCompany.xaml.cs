@@ -100,12 +100,89 @@ namespace Lab1_Gachkovsky.View
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            WindowNewCompany windowNewCompany = new WindowNewCompany
+            {
+                Title = "Редактирование физического лица",
+                Owner = this
+            };
 
+            CompanyDPO companyDPO = (CompanyDPO)ListCompany.SelectedValue;
+            CompanyDPO tempCompanyDPO;
+
+            if (companyDPO != null)
+            {
+                tempCompanyDPO = new CompanyDPO
+                {
+                    Id = companyDPO.Id,
+                    PersonID = companyDPO.PersonID,
+                    OrgRegistrationID = companyDPO.OrgRegistrationID,
+                    OrgLegFullID = companyDPO.OrgLegFullID,
+                    NameFull = companyDPO.NameFull,
+                    NameShort = companyDPO.NameShort,
+                    NumberReg = companyDPO.NumberReg,
+                    DataReg = companyDPO.DataReg
+                };
+                windowNewCompany.DataContext = tempCompanyDPO;
+
+                windowNewCompany.cb_person.ItemsSource = people;
+                windowNewCompany.cb_person.Text = tempCompanyDPO.PersonID;
+
+                windowNewCompany.cb_reg.ItemsSource = regs;
+                windowNewCompany.cb_reg.Text = tempCompanyDPO.OrgRegistrationID;
+
+                windowNewCompany.cb_leg.ItemsSource = legs;
+                windowNewCompany.cb_leg.Text = tempCompanyDPO.OrgLegFullID;
+
+                if (windowNewCompany.ShowDialog() == true)
+                {
+                    Person person = (Person)windowNewCompany.cb_person.SelectedValue;
+                    OrgRegistration orgRegistratio = (OrgRegistration)windowNewCompany.cb_reg.SelectedValue;
+                    OrgLegForm orgLegForm = (OrgLegForm)windowNewCompany.cb_leg.SelectedValue;
+
+                    companyDPO.PersonID = person.Shifer.ToString(); //Проверить
+                    companyDPO.OrgRegistrationID = orgRegistratio.NameFull;
+                    companyDPO.OrgLegFullID = orgLegForm.NameFull;
+                    companyDPO.NameFull = tempCompanyDPO.NameFull;
+                    companyDPO.NameShort = tempCompanyDPO.NameShort;
+                    companyDPO.NumberReg = tempCompanyDPO.NumberReg;
+                    companyDPO.DataReg = tempCompanyDPO.DataReg;
+
+                    FindCompany finder = new FindCompany(companyDPO.Id);
+                    List<Company> listCompany = vmCompany.ListCompany.ToList();
+                    Company company = listCompany.Find(new Predicate<Company>(finder.CompanyPredicate));
+                    company = company.CopyFromCompanyDPO(companyDPO);
+
+                    ListCompany.ItemsSource = null;
+                    ListCompany.ItemsSource = companiesDPO;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Необходимо выбрать физическое лицо для редактированния ", "Предупреждение",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            CompanyDPO company = (CompanyDPO)ListCompany.SelectedItem;
+            if (company != null)
+            {
+                MessageBoxResult result = MessageBox.Show("Удалить данные по физическому лицу: \n"
+                    + company.NameFull, "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.OK)
+                {
+                    companiesDPO.Remove(company);
+                    Company companyTemp = new Company();
+                    companyTemp = companyTemp.CopyFromCompanyDPO(company);
+                    vmCompany.ListCompany.Remove(companyTemp);
+                }
+            }
+            else 
+            {
+                MessageBox.Show("Необходимо выбрать физическое лицо для удаления ", "Предупреждение",
+                MessageBoxButton.OK, MessageBoxImage.Warning);
+            };
         }
     }
 }
