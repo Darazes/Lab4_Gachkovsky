@@ -1,0 +1,38 @@
+﻿<Window x:Class="Lab1_Gachkovsky.View.WindowPerson"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab1_Gachkovsky.View"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Клиенты" Height="450" Width="800">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="btnAdd" Margin="10,10,5,10" Content="Добавить"
+                    Height="25" Click="btnAdd_Click"></Button>
+            <Button x:Name="btnEdit" Margin="10,10,5,10" Content="Редактировать"
+                    Height="25" Click="btnEdit_Click"></Button>
+            <Button x:Name="btnDelete" Margin="10,10,5,10" Content="Удалить"
+                    Height="25" Click="btnDelete_Click"></Button>
+        </StackPanel>
+        <ListView x:Name="ListPerson">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Код"
+                         DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="Шифр"
+                         DisplayMemberBinding="{Binding Shifer}"/>
+                        <GridViewColumn Header="Инн" 
+                         DisplayMemberBinding="{Binding Inn}"/>
+                        <GridViewColumn Header="Тип" 
+                         DisplayMemberBinding="{Binding Type}"/>
+                        <GridViewColumn Header="Дата регистрации" 
+                         DisplayMemberBinding="{Binding Data}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
+</Window>

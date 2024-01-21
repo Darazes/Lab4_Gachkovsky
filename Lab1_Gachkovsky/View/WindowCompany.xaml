@@ -1,0 +1,45 @@
+﻿<Window x:Class="Lab1_Gachkovsky.View.WindowCompany"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab1_Gachkovsky.View"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Физические лица" Height="450" Width="960">
+
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="btnAdd" Margin="10,10,5,10" Content="Добавить"
+                    Height="25" Click="btnAdd_Click"></Button>
+            <Button x:Name="btnEdit" Margin="10,10,5,10" Content="Редактировать"
+                    Height="25" Click="btnEdit_Click"></Button>
+            <Button x:Name="btnDelete" Margin="10,10,5,10" Content="Удалить"
+                    Height="25" Click="btnDelete_Click"></Button>
+        </StackPanel>
+        <ListView x:Name="ListCompany">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Код физического лица" 
+                         DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="Код клиента" 
+                         DisplayMemberBinding="{Binding PersonID}"/>
+                        <GridViewColumn Header="Код регистрации"
+                         DisplayMemberBinding="{Binding OrgRegistrationID}"/>
+                        <GridViewColumn Header="Код формы" 
+                         DisplayMemberBinding="{Binding OrgLegFullID}"/>
+                        <GridViewColumn Header="Полное наименование" 
+                         DisplayMemberBinding="{Binding NameFull}"/>
+                        <GridViewColumn Header="Краткое название" 
+                         DisplayMemberBinding="{Binding NameShort}"/>
+                        <GridViewColumn Header="Номер регистрации" 
+                         DisplayMemberBinding="{Binding NumberReg}"/>
+                        <GridViewColumn Header="Дата регистрации" 
+                         DisplayMemberBinding="{Binding DataReg}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
+</Window>

@@ -1,0 +1,67 @@
+﻿<Window x:Class="Lab1_Gachkovsky.View.WindowNewPerson"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab1_Gachkovsky.View"
+        mc:Ignorable="d"
+        
+        Title="WindowNewPerson" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="75*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Код:" 
+                   HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Шифр:" 
+                   HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Инн:" 
+                   HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Тип:" 
+                   HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Дата:" 
+                   HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"/>
+
+        <TextBox x:Name="tb_Id" Grid.Row="0" Grid.Column="1" Height="20" Width="120"
+                 HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
+                 Text="{Binding Id}" IsEnabled="False"/>
+        <TextBox x:Name="tb_Shifer" Grid.Row="1" Grid.Column="1" Height="20" Width="120"
+                 HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
+                 Text="{Binding Shifer}"/>
+        <TextBox x:Name="tb_Inn" Grid.Row="2" Grid.Column="1" Height="20" Width="120"
+                 HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
+                 Text="{Binding Inn}"/>
+        <TextBox x:Name="tb_Type" Grid.Row="3" Grid.Column="1" Height="20" Width="120"
+                 HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
+                 Text="{Binding Type}"/>
+        <TextBox x:Name="tb_Date" Grid.Row="4" Grid.Column="1" Height="20" Width="120"
+                 HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
+                 Text="{Binding Date}"/>
+        
+
+            <Button x:Name="btnSave" Content="Добавить" Height="25"
+                Grid.Row="5" Grid.Column="0"
+                HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,10,0,5"
+                IsDefault="True" Click="btnSave_Click"/>
+
+            <Button x:Name="btnCancel" Content="отменить" Height="25" Width="70" 
+                Grid.Row="5" Grid.Column="1"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,10,10,5"
+                IsCancel="True" Click="btnCancel_Click"/>
+
+       
+
+    </Grid>
+
+</Window>
